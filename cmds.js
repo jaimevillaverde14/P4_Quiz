@@ -119,10 +119,10 @@ exports.playCmd = (rl) => {
         return Promise.resolve()
         .then(() => {
           if (toBeResolved.length <= 0) {
-            log (`No hay nada más que preguntar.`);
-            log (`Fin del examen. Aciertos:`);
+            log ("No hay nada más que preguntar.");
+            log (`Fin del examen. Aciertos: ${score}`);
             biglog (`${score}`,'magenta');
-            rl.prompt();
+           
             return;
         }
 
@@ -130,23 +130,20 @@ exports.playCmd = (rl) => {
         let quiz = toBeResolved[id];
         toBeResolved.splice(id,1);
 
-        makeQuestion(rl, `${quiz.question}:`)
+        makeQuestion(rl, `${quiz.question}: `)
         .then(answer => {
           if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
             score++;
             log (`CORRECTO - Lleva ${score} aciertos`);
             return playOne();
           }else{
-            log (`INCORRECTO.`);
-              log (`Fin del examen. Aciertos: `);
+            log ("INCORRECTO.");
+              log (`Fin del examen. Aciertos: ${score}`);
               biglog (`${score}`,'magenta');
-              rl.prompt();
+              
           }
         })
         })
-        .then(() => {
-       rl.prompt();
-      })
       }
       models.quiz.findAll({raw: true})
       .then(quizzes => {
@@ -156,9 +153,11 @@ exports.playCmd = (rl) => {
         return playOne();
       })
       .catch(e => {
-        console.log("Error: "+e);
-      });
-      rl.prompt();
+        console.log("Error: "+ e);
+      })
+      .then(() => {
+       rl.prompt();
+      })
 
 };
     

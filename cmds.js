@@ -121,7 +121,8 @@ exports.playCmd = (rl) => {
           if (toBeResolved.length <= 0) {
             log (`No hay nada más que preguntar.`);
             log (`Fin del examen. Aciertos:`);
-            biglog ('${score}','magenta');
+            biglog (`${score}`,'magenta');
+            rl.prompt();
             return;
         }
 
@@ -139,6 +140,7 @@ exports.playCmd = (rl) => {
             log (`INCORRECTO.`);
               log (`Fin del examen. Aciertos: `);
               biglog (`${score}`,'magenta');
+              rl.prompt();
           }
         })
         })
@@ -152,10 +154,8 @@ exports.playCmd = (rl) => {
       })
       .catch(e => {
         console.log("Error: "+e);
-      })
-      .then(() => {
-        rl.prompt();
-      })
+      });
+      rl.prompt();
 
 };
     

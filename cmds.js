@@ -122,6 +122,9 @@ exports.playCmd = (rl) => {
             log ("No hay nada más que preguntar.");
             log (`Fin del examen. Aciertos: ${score}`);
             biglog (`${score}`,'magenta');
+            
+             rl.prompt();
+            
            
             return;
         }
@@ -140,6 +143,9 @@ exports.playCmd = (rl) => {
             log ("INCORRECTO.");
               log (`Fin del examen. Aciertos: ${score}`);
               biglog (`${score}`,'magenta');
+              
+               rl.prompt();
+             
               
           }
         })

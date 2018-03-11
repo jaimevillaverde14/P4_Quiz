@@ -144,6 +144,9 @@ exports.playCmd = (rl) => {
           }
         })
         })
+        .then(() => {
+       rl.prompt();
+      })
       }
       models.quiz.findAll({raw: true})
       .then(quizzes => {

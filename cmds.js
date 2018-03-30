@@ -242,7 +242,7 @@ exports.addCmd = (socket,rl) => {
       });
 };
 
-exports.creditsCmd = (rl) => {
+exports.creditsCmd = (socket, rl) => {
       log(socket,'Autores de la práctica:');
       log(socket,'Jaime Villaverde Moreno.', 'green');
       log(socket,'Maite Martínez de Osaba.', 'green');
